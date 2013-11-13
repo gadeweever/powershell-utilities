@@ -43,28 +43,29 @@ $links = $links.Replace("href=", "");
 
 
 # pass to create a new string with just links
-# $search_index = $links.length;
-# for($i = 0; $i -lt $search_index; $i++)
-# 	{
-# 		#check if we have a link tag, if so, begin writing
-# 		if(($links.substring($i,$i+2).compareTo("<a")))
-# 			{
-# 				$i = $i + 2;
-# 				#begin writing
-# 				while (-not ($links[$i].toString().compareTo(">")))
-# 					{
-# 						$buffer = $buffer + $links[$i].toString();
-# 						$i++;
-# 					}
-# 				$buffer = $buffer + "`n";
+$search_index = $links.length;
+$links = 
+for($i = 0; $i -lt $search_index; $i++)
+	{
+		#check if we have a link tag, if so, begin writing
+		if(($links.substring($i,$i+2).compareTo("<a")))
+			{
+				$i = $i + 2;
+				#begin writing
+				while (-not ($links[$i].toString().compareTo(">")))
+					{
+						$buffer = $buffer + $links[$i].toString();
+						$i++;
+					}
+				$buffer = $buffer + "`n";
 					
-# 			}
-# 		else
-# 			{
-# 				$i++;
-# 			}
+			}
+		else
+			{
+				$i++;
+			}
 
-# 	}
+	}
 
 
 $links > "student-groups.txt";
