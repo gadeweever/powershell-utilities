@@ -34,39 +34,37 @@ for($i = 0; $i -le $num_links; $i++)
 		}
 }
 
-# for purposes of the page, these tages are filtered out
-$links = $links.Replace("<h4>", "");
-$links = $links.Replace("</h4>", "");
-$links = $links.Replace("<h3>", "");
-$links = $links.Replace("</h3>", "");
-$links = $links.Replace("href=", "");
-
 
 # pass to create a new string with just links
 $search_index = $links.length;
-$links = 
 for($i = 0; $i -lt $search_index; $i++)
 	{
-		#check if we have a link tag, if so, begin writing
-		if(($links.substring($i,$i+2).compareTo("<a")))
-			{
-				$i = $i + 2;
-				#begin writing
-				while (-not ($links[$i].toString().compareTo(">")))
-					{
-						$buffer = $buffer + $links[$i].toString();
-						$i++;
-					}
-				$buffer = $buffer + "`n";
+		#Write-Host "We are in the outer loop. i = $i";
+		#Write-Host "The current letter is " -nonewline
+		#Write-Host $links[$i]
+		
+				#Write-Host "Checking that we are getting an href, i = $i"
+				
+				#check if we have a link tag, if so, begin writing
+				if(($links.substring($i,5).compareTo("href=")) -eq 0)
+				{
+					#Write-Host "Inside check adding constant to i, i = $i"
+
+					$i += 5;
+					#begin writing
+					while (($links[$i].toString().compareTo(">")) -ne 0)
+						{
+							#Write-Host "Inside check for > character, i = $i"
+							$buffer = $buffer + $links[$i].toString();
+							$i++;
+						}
+					$buffer = $buffer + "`n";
 					
-			}
-		else
-			{
-				$i++;
-			}
+				}
 
 	}
 
 
 $links > "student-groups.txt";
+$buffer > "buffer.txt"
 
