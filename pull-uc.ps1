@@ -44,7 +44,8 @@ for($i = 0; $i -lt $search_index; $i++)
 		#Write-Host $links[$i]
 		
 				#Write-Host "Checking that we are getting an href, i = $i"
-				
+				if(($i + 4) -lt $search_index)
+					{
 				#check if we have a link tag, if so, begin writing
 				if(($links.substring($i,5).compareTo("href=")) -eq 0)
 				{
@@ -61,6 +62,7 @@ for($i = 0; $i -lt $search_index; $i++)
 					$buffer = $buffer + "`n";
 					
 				}
+			}
 
 	}
 
